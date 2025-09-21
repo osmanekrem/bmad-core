@@ -1,0 +1,71 @@
+{
+  "name": "@osmanekrem/bmad",
+  "version": "1.0.0",
+  "description": "BMad AI Development Agents - Complete Suite",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:integration": "vitest run tests/integration",
+    "test:e2e": "vitest run tests/e2e",
+    "test:performance": "vitest run tests/performance",
+    "lint": "eslint packages/**/*.js tests/**/*.js",
+    "lint:fix": "eslint packages/**/*.js tests/**/*.js --fix",
+    "clean": "rm -rf packages/*/dist packages/*/node_modules node_modules",
+    "install:all": "npm install && npm run install --workspaces",
+    "build:all": "npm run build --workspaces",
+    "test:all": "npm run test --workspaces && npm run test",
+    "prepare": "npm run build:all",
+    "publish:all": "node scripts/publish-packages.js",
+    "publish:core": "npm publish packages/core --access public",
+    "publish:analyst": "npm publish packages/analyst --access public",
+    "publish:architect": "npm publish packages/architect --access public",
+    "publish:dev": "npm publish packages/dev --access public",
+    "publish:pm": "npm publish packages/pm --access public",
+    "publish:qa": "npm publish packages/qa --access public",
+    "publish:sm": "npm publish packages/sm --access public",
+    "publish:ux": "npm publish packages/ux --access public",
+    "publish:master": "npm publish packages/master --access public",
+    "publish:orchestrator": "npm publish packages/orchestrator --access public",
+    "publish:templates": "npm publish packages/templates --access public",
+    "publish:cli": "npm publish packages/cli --access public",
+    "setup:npm": "node scripts/setup-npm.js"
+  },
+  "devDependencies": {
+    "vitest": "^1.0.0",
+    "@vitest/coverage-v8": "^1.0.0",
+    "eslint": "^8.0.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.0.0",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-promise": "^6.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "keywords": [
+    "ai",
+    "agents",
+    "development",
+    "automation",
+    "bmad",
+    "npm",
+    "packages"
+  ],
+  "author": "Osman Ekrem Korkmaz",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/osmanekrem/bmad-core.git"
+  },
+  "bugs": {
+    "url": "https://github.com/osmanekrem/bmad-core/issues"
+  },
+  "homepage": "https://github.com/osmanekrem/bmad-core#readme"
+}

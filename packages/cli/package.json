@@ -1,0 +1,49 @@
+{
+  "name": "@osmanekrem/bmad/cli",
+  "version": "1.0.0",
+  "description": "BMad CLI - Command line tool for BMad agent management",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "bmad": "./dist/index.js",
+    "bmad-cli": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "vitest",
+    "lint": "eslint src --ext .ts",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "commander": "^11.0.0",
+    "inquirer": "^9.0.0",
+    "chalk": "^5.0.0",
+    "ora": "^7.0.0",
+    "dotenv": "^16.0.0",
+    "@osmanekrem/bmad/core": "file:../core"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^9.0.0",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "vitest": "^1.0.0",
+    "eslint": "^8.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0"
+  },
+  "keywords": [
+    "cli",
+    "bmad",
+    "ai",
+    "agents",
+    "command-line"
+  ],
+  "author": "Osman Ekrem Korkmaz",
+  "license": "MIT"
+}

@@ -1,0 +1,61 @@
+{
+  "name": "@osmanekrem/bmad/templates",
+  "version": "1.0.0",
+  "description": "BMad Templates - Template system for BMad agents",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./compiler": {
+      "import": "./dist/compiler/index.js",
+      "types": "./dist/compiler/index.d.ts"
+    },
+    "./manager": {
+      "import": "./dist/manager/index.js",
+      "types": "./dist/manager/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "templates",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc && npm run compile-templates",
+    "compile-templates": "node dist/compiler/compile-templates.js",
+    "dev": "tsc --watch",
+    "test": "vitest",
+    "lint": "eslint src --ext .ts",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0",
+    "handlebars": "^4.7.8",
+    "glob": "^10.0.0",
+    "chokidar": "^3.5.0"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.0",
+    "@types/handlebars": "^4.1.0",
+    "@types/node": "^20.0.0",
+    "@types/chokidar": "^2.1.0",
+    "typescript": "^5.0.0",
+    "vitest": "^1.0.0",
+    "eslint": "^8.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0"
+  },
+  "keywords": [
+    "templates",
+    "yaml",
+    "compiler",
+    "bmad",
+    "agents"
+  ],
+  "author": "Osman Ekrem Korkmaz",
+  "license": "MIT"
+}

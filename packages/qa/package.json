@@ -1,0 +1,56 @@
+{
+  "name": "@osmanekrem/bmad/agents/qa",
+  "version": "1.0.0",
+  "description": "BMad QA Agent - AI-driven quality assurance and testing",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./commands": {
+      "import": "./dist/commands/index.js",
+      "types": "./dist/commands/index.d.ts"
+    },
+    "./templates": {
+      "import": "./dist/templates/index.js",
+      "types": "./dist/templates/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "templates",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "vitest",
+    "lint": "eslint src --ext .ts",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@osmanekrem/bmad-core": "file:../core",
+    "@osmanekrem/bmad-templates": "file:../templates"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "vitest": "^1.0.0",
+    "eslint": "^8.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0"
+  },
+  "keywords": [
+    "bmad",
+    "qa",
+    "quality-assurance",
+    "testing",
+    "ai",
+    "agent"
+  ],
+  "author": "Osman Ekrem Korkmaz",
+  "license": "MIT"
+}
