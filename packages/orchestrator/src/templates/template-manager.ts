@@ -1,4 +1,4 @@
-import { TemplateManager } from '@osmanekrem/bmad-templates'
+import { TemplateManager } from 'bmad-templates'
 import { OrchestratorContext, WorkflowCoordination, ProjectCoordination } from '../types/index.js'
 
 export class OrchestratorTemplateManager {

@@ -1,5 +1,5 @@
 {
-  "name": "@osmanekrem/bmad/agents/analyst",
+  "name": "bmad-analyst",
   "version": "1.0.0",
   "description": "BMad Analyst Agent - AI-driven analysis and research",
   "type": "module",
@@ -32,8 +32,8 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@osmanekrem/bmad/core": "file:../core",
-    "@osmanekrem/bmad/templates": "file:../templates"
+    "bmad-core": "file:../core",
+    "bmad-templates": "file:../templates"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",

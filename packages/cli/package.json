@@ -1,5 +1,5 @@
 {
-  "name": "@osmanekrem/bmad/cli",
+  "name": "bmad-cli",
   "version": "1.0.0",
   "description": "BMad CLI - Command line tool for BMad agent management",
   "type": "module",
@@ -26,7 +26,7 @@
     "chalk": "^5.0.0",
     "ora": "^7.0.0",
     "dotenv": "^16.0.0",
-    "@osmanekrem/bmad/core": "file:../core"
+    "bmad-core": "file:../core"
   },
   "devDependencies": {
     "@types/inquirer": "^9.0.0",

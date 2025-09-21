@@ -1,4 +1,4 @@
-import { TemplateManager } from '@osmanekrem/bmad-templates'
+import { TemplateManager } from 'bmad-templates'
 import { SMContext, SprintPlan, Retrospective, DailyStandup, BacklogRefinement, TeamCoaching } from '../types/index.js'
 
 export class SMTemplateManager {

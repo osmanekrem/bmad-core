@@ -1,4 +1,4 @@
-import { ConfigManager } from '@osmanekrem/bmad/core'
+import { ConfigManager } from 'bmad-core'
 import { ValidationResult } from '../types/index.js'
 
 export class ConfigValidator {

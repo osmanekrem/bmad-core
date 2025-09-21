@@ -1,4 +1,4 @@
-import { TemplateManager } from '@osmanekrem/bmad-templates'
+import { TemplateManager } from 'bmad-templates'
 import { DevContext, CodeGeneration, CodeReview, DebuggingSession, RefactoringPlan, TestingPlan } from '../types/index.js'
 
 export class DevTemplateManager {

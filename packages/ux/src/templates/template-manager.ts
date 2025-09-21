@@ -1,4 +1,4 @@
-import { TemplateManager } from '@osmanekrem/bmad-templates'
+import { TemplateManager } from 'bmad-templates'
 import { UXContext, UserResearch, UserPersona, UserJourney, Wireframe, Prototype, UsabilityTest, AccessibilityAudit, DesignSystem } from '../types/index.js'
 
 export class UXTemplateManager {

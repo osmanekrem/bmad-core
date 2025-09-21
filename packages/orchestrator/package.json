@@ -1,5 +1,5 @@
 {
-  "name": "@osmanekrem/bmad/agents/orchestrator",
+  "name": "bmad-orchestrator",
   "version": "1.0.0",
   "description": "BMad Orchestrator Agent - AI-driven project coordination and workflow management specialist",
   "type": "module",
@@ -32,8 +32,8 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@osmanekrem/bmad-core": "file:../core",
-    "@osmanekrem/bmad-templates": "file:../templates"
+    "bmad-core": "file:../core",
+    "bmad-templates": "file:../templates"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",

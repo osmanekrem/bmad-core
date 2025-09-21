@@ -1,4 +1,4 @@
-import { TemplateManager } from '@osmanekrem/bmad-templates'
+import { TemplateManager } from 'bmad-templates'
 import { MasterContext, ProjectStrategy, WorkflowOrchestration, StrategicPlanning } from '../types/index.js'
 
 export class MasterTemplateManager {

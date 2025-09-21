@@ -1,4 +1,4 @@
-import { TemplateManager } from '@osmanekrem/bmad-templates'
+import { TemplateManager } from 'bmad-templates'
 import { PMContext, ProjectPlan, TaskBreakdown } from '../types/index.js'
 
 export class PMTemplateManager {

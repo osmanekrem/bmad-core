@@ -1,32 +1,16 @@
 #!/usr/bin/env node
 
 /**
- * BMad Package Publishing Script
- * Publishes all BMad packages to NPM in the correct order
+ * BMad Unified Package Publishing Script
+ * Publishes the unified BMad package to NPM with tree-shaking support
  */
 
 import { execSync } from 'child_process'
 import { readFileSync, writeFileSync } from 'fs'
 import { join } from 'path'
 
-console.log('🚀 BMad Package Publisher')
-console.log('========================')
-
-// Package publishing order (dependencies first)
-const publishOrder = [
-  'core',
-  'templates',
-  'analyst',
-  'architect', 
-  'dev',
-  'pm',
-  'qa',
-  'sm',
-  'ux',
-  'master',
-  'orchestrator',
-  'cli'
-]
+console.log('🚀 BMad Unified Package Publisher')
+console.log('==================================')
 
 // Check if user is logged in
 try {
@@ -43,8 +27,8 @@ if (!process.env.NPM_TOKEN) {
   console.log('⚠️  NPM_TOKEN not set. Using npm login instead.')
 }
 
-// Build all packages first
-console.log('\n📦 Building all packages...')
+// Build the unified package
+console.log('\n📦 Building unified package...')
 try {
   execSync('npm run build', { stdio: 'inherit' })
   console.log('✅ Build completed successfully')
@@ -53,61 +37,62 @@ try {
   process.exit(1)
 }
 
-// Publish packages in order
-console.log('\n📤 Publishing packages...')
-const publishedPackages = []
+// Read package.json to get version
+const packageJsonPath = 'package.json'
+const packageJson = JSON.parse(readFileSync(packageJsonPath, 'utf8'))
+const packageName = packageJson.name
+const version = packageJson.version
 
-for (const packageName of publishOrder) {
-  const packagePath = `packages/${packageName}`
-  const packageJsonPath = join(packagePath, 'package.json')
+console.log(`\n📦 Publishing ${packageName}@${version}...`)
+
+// Check if package already exists
+try {
+  execSync(`npm view ${packageName}@${version}`, { stdio: 'pipe' })
+  console.log(`⚠️  ${packageName}@${version} already exists, skipping...`)
+  process.exit(0)
+} catch (error) {
+  // Package doesn't exist, proceed with publishing
+}
+
+// Publish the unified package
+try {
+  execSync('npm publish', { 
+    stdio: 'inherit',
+    cwd: process.cwd()
+  })
   
-  try {
-    // Read package.json to get version
-    const packageJson = JSON.parse(readFileSync(packageJsonPath, 'utf8'))
-    const fullPackageName = packageJson.name
-    const version = packageJson.version
-    
-    console.log(`\n📦 Publishing ${fullPackageName}@${version}...`)
-    
-    // Check if package already exists
-    try {
-      execSync(`npm view ${fullPackageName}@${version}`, { stdio: 'pipe' })
-      console.log(`⚠️  ${fullPackageName}@${version} already exists, skipping...`)
-      continue
-    } catch (error) {
-      // Package doesn't exist, proceed with publishing
-    }
-    
-    // Publish the package
-    execSync(`npm publish ${packagePath} --access public`, { 
-      stdio: 'inherit',
-      cwd: process.cwd()
-    })
-    
-    publishedPackages.push(`${fullPackageName}@${version}`)
-    console.log(`✅ ${fullPackageName}@${version} published successfully`)
-    
-  } catch (error) {
-    console.log(`❌ Failed to publish ${packageName}: ${error.message}`)
-    console.log('Continuing with next package...')
-  }
+  console.log(`✅ ${packageName}@${version} published successfully`)
+} catch (error) {
+  console.log(`❌ Failed to publish ${packageName}: ${error.message}`)
+  process.exit(1)
 }
 
 // Summary
 console.log('\n🎉 Publishing Summary')
 console.log('====================')
-console.log(`✅ Successfully published ${publishedPackages.length} packages:`)
-publishedPackages.forEach(pkg => console.log(`   - ${pkg}`))
+console.log(`✅ Successfully published ${packageName}@${version}`)
 
-if (publishedPackages.length > 0) {
-  console.log('\n🔗 View your packages at:')
-  console.log('   https://www.npmjs.com/org/osmanekrem')
-  
-  console.log('\n📝 Installation commands:')
-  console.log('   npm install @osmanekrem/bmad/core')
-  console.log('   npm install @osmanekrem/bmad/agents/analyst')
-  console.log('   npm install @osmanekrem/bmad/templates')
-  console.log('   npm install @osmanekrem/bmad/cli')
-}
+console.log('\n🔗 View your package at:')
+console.log(`   https://www.npmjs.com/package/${packageName}`)
+
+console.log('\n📝 Installation and usage:')
+console.log('   npm install @osmanekrem/bmad')
+console.log('')
+console.log('   // Tree-shaking imports:')
+console.log('   import { CoreAgent } from "@osmanekrem/bmad/core"')
+console.log('   import { AnalystAgent } from "@osmanekrem/bmad/analyst"')
+console.log('   import { ArchitectAgent } from "@osmanekrem/bmad/architect"')
+console.log('   import { DevAgent } from "@osmanekrem/bmad/dev"')
+console.log('   import { PMAgent } from "@osmanekrem/bmad/pm"')
+console.log('   import { QAAgent } from "@osmanekrem/bmad/qa"')
+console.log('   import { SMAgent } from "@osmanekrem/bmad/sm"')
+console.log('   import { UXAgent } from "@osmanekrem/bmad/ux"')
+console.log('   import { MasterAgent } from "@osmanekrem/bmad/master"')
+console.log('   import { OrchestratorAgent } from "@osmanekrem/bmad/orchestrator"')
+console.log('   import { TemplateManager } from "@osmanekrem/bmad/templates"')
+console.log('   import { CLI } from "@osmanekrem/bmad/cli"')
+console.log('')
+console.log('   // Or import everything:')
+console.log('   import * as BMad from "@osmanekrem/bmad"')
 
 console.log('\n✨ Publishing complete!')

@@ -1,13 +1,80 @@
 {
   "name": "@osmanekrem/bmad",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "BMad AI Development Agents - Complete Suite",
-  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./core": {
+      "import": "./dist/core/index.js",
+      "types": "./dist/core/index.d.ts"
+    },
+    "./analyst": {
+      "import": "./dist/analyst/index.js",
+      "types": "./dist/analyst/index.d.ts"
+    },
+    "./architect": {
+      "import": "./dist/architect/index.js",
+      "types": "./dist/architect/index.d.ts"
+    },
+    "./dev": {
+      "import": "./dist/dev/index.js",
+      "types": "./dist/dev/index.d.ts"
+    },
+    "./pm": {
+      "import": "./dist/pm/index.js",
+      "types": "./dist/pm/index.d.ts"
+    },
+    "./qa": {
+      "import": "./dist/qa/index.js",
+      "types": "./dist/qa/index.d.ts"
+    },
+    "./sm": {
+      "import": "./dist/sm/index.js",
+      "types": "./dist/sm/index.d.ts"
+    },
+    "./ux": {
+      "import": "./dist/ux/index.js",
+      "types": "./dist/ux/index.d.ts"
+    },
+    "./master": {
+      "import": "./dist/master/index.js",
+      "types": "./dist/master/index.d.ts"
+    },
+    "./orchestrator": {
+      "import": "./dist/orchestrator/index.js",
+      "types": "./dist/orchestrator/index.d.ts"
+    },
+    "./templates": {
+      "import": "./dist/templates/index.js",
+      "types": "./dist/templates/index.d.ts"
+    },
+    "./cli": {
+      "import": "./dist/cli/index.js",
+      "types": "./dist/cli/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
-    "build": "npm run build --workspaces",
+    "build": "npm run build:packages && npm run build:unified",
+    "build:packages": "npm run build --workspaces",
+    "build:unified": "node scripts/build-unified.js",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
@@ -16,25 +83,44 @@
     "test:performance": "vitest run tests/performance",
     "lint": "eslint packages/**/*.js tests/**/*.js",
     "lint:fix": "eslint packages/**/*.js tests/**/*.js --fix",
-    "clean": "rm -rf packages/*/dist packages/*/node_modules node_modules",
+    "clean": "rm -rf packages/*/dist packages/*/node_modules node_modules dist",
     "install:all": "npm install && npm run install --workspaces",
     "build:all": "npm run build --workspaces",
     "test:all": "npm run test --workspaces && npm run test",
-    "prepare": "npm run build:all",
+    "prepare": "npm run build",
+    "publish": "npm run build && npm publish",
     "publish:all": "node scripts/publish-packages.js",
-    "publish:core": "npm publish packages/core --access public",
-    "publish:analyst": "npm publish packages/analyst --access public",
-    "publish:architect": "npm publish packages/architect --access public",
-    "publish:dev": "npm publish packages/dev --access public",
-    "publish:pm": "npm publish packages/pm --access public",
-    "publish:qa": "npm publish packages/qa --access public",
-    "publish:sm": "npm publish packages/sm --access public",
-    "publish:ux": "npm publish packages/ux --access public",
-    "publish:master": "npm publish packages/master --access public",
-    "publish:orchestrator": "npm publish packages/orchestrator --access public",
-    "publish:templates": "npm publish packages/templates --access public",
-    "publish:cli": "npm publish packages/cli --access public",
     "setup:npm": "node scripts/setup-npm.js"
+  },
+  "dependencies": {
+    "openai": "^4.0.0",
+    "@anthropic-ai/sdk": "^0.9.0",
+    "@google/generative-ai": "^0.2.0",
+    "js-yaml": "^4.1.0",
+    "handlebars": "^4.7.8",
+    "glob": "^10.0.0",
+    "chokidar": "^3.5.0",
+    "commander": "^11.0.0",
+    "inquirer": "^9.0.0",
+    "chalk": "^5.0.0",
+    "ora": "^7.0.0",
+    "dotenv": "^16.0.0"
+  },
+  "peerDependencies": {
+    "openai": "^4.0.0",
+    "@anthropic-ai/sdk": "^0.9.0",
+    "@google/generative-ai": "^0.2.0"
+  },
+  "peerDependenciesMeta": {
+    "openai": {
+      "optional": true
+    },
+    "@anthropic-ai/sdk": {
+      "optional": true
+    },
+    "@google/generative-ai": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "vitest": "^1.0.0",
@@ -43,7 +129,15 @@
     "eslint-config-standard": "^17.0.0",
     "eslint-plugin-import": "^2.0.0",
     "eslint-plugin-node": "^11.0.0",
-    "eslint-plugin-promise": "^6.0.0"
+    "eslint-plugin-promise": "^6.0.0",
+    "@types/js-yaml": "^4.0.0",
+    "@types/handlebars": "^4.1.0",
+    "@types/node": "^20.0.0",
+    "@types/chokidar": "^2.1.0",
+    "@types/inquirer": "^9.0.0",
+    "typescript": "^5.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0"
   },
   "engines": {
     "node": ">=18.0.0",

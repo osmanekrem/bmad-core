@@ -1,4 +1,4 @@
-import { BaseAgentImpl, AgentConfig, AgentContext, AgentResponse } from '@osmanekrem/bmad/core'
+import { BaseAgentImpl, AgentConfig, AgentContext, AgentResponse } from 'bmad-core'
 import { 
   AnalystCommand, 
   AnalystContext, 

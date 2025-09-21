@@ -1,4 +1,4 @@
-import { TemplateManager } from '@osmanekrem/bmad-templates'
+import { TemplateManager } from 'bmad-templates'
 import { QAContext, TestPlan, BugReport, TestReport, QAGate } from '../types/index.js'
 
 export class QATemplateManager {

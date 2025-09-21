@@ -1,4 +1,4 @@
-import { TemplateManager } from '@osmanekrem/bmad-templates'
+import { TemplateManager } from 'bmad-templates'
 import { ArchitectContext, ArchitectureDesign, SystemAnalysis } from '../types/index.js'
 
 export class ArchitectTemplateManager {

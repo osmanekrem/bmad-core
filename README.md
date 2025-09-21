@@ -1,362 +1,181 @@
 # BMad AI Development Agents
 
-A comprehensive suite of AI-powered development agents designed to automate and enhance the software development lifecycle.
+A comprehensive suite of AI-powered development agents with tree-shaking support for modern JavaScript/TypeScript projects.
 
-## 🚀 Overview
-
-BMad is a modular AI agent system that provides specialized agents for different aspects of software development, from market research and architecture design to code generation and project management.
-
-## 📦 Packages
-
-### Core Packages
-
-- **@osmanekrem/bmad/core** - Core infrastructure and base classes
-- **@osmanekrem/bmad/templates** - Template system for document generation
-- **@osmanekrem/bmad/cli** - Command-line interface
-
-### Specialized Agents
-
-- **@osmanekrem/bmad/agents/analyst** - Market research and analysis
-- **@osmanekrem/bmad/agents/architect** - System design and architecture
-- **@osmanekrem/bmad/agents/dev** - Code generation and development
-- **@osmanekrem/bmad/agents/pm** - Project management and planning
-- **@osmanekrem/bmad/agents/qa** - Quality assurance and testing
-- **@osmanekrem/bmad/agents/sm** - Scrum master and agile processes
-- **@osmanekrem/bmad/agents/ux** - User experience design
-- **@osmanekrem/bmad/agents/master** - Strategic planning and orchestration
-- **@osmanekrem/bmad/agents/orchestrator** - Workflow coordination
-
-## 🛠️ Installation
-
-### Prerequisites
-
-- Node.js 18.0.0 or higher
-- npm 8.0.0 or higher
-- Valid AI provider API key (OpenAI, Claude, or Gemini)
-
-### Quick Start
+## Installation
 
 ```bash
-# Clone the repository
-git clone https://github.com/osmanekrem/bmad-core.git
-cd bmad-core/bmad-npm-packages
-
-# Install dependencies
-npm install
-
-# Build all packages
-npm run build:all
-
-# Run tests
-npm test
+npm install @osmanekrem/bmad
 ```
 
-### Individual Package Installation
+## Tree-Shaking Support
 
-```bash
-# Install specific agent
-npm install @osmanekrem/bmad/agents/analyst
+This package is designed with tree-shaking in mind. You can import only the specific agents you need:
 
-# Install core packages
-npm install @osmanekrem/bmad/core @osmanekrem/bmad/templates
-```
-
-## 🔧 Configuration
-
-### Environment Variables
-
-```bash
-# Required
-export BMAD_AI_API_KEY="your-api-key-here"
-export BMAD_AI_PROVIDER="openai"  # or "claude" or "gemini"
-
-# Optional
-export BMAD_AI_MODEL="gpt-4"
-export BMAD_AI_TEMPERATURE="0.7"
-export BMAD_AI_MAX_TOKENS="2000"
-```
-
-### CLI Configuration
-
-```bash
-# Initialize BMad in your project
-bmad init
-
-# Configure settings
-bmad config set provider openai
-bmad config set api-key your-api-key
-
-# Check status
-bmad status
-```
-
-## 📚 Usage
-
-### Basic Agent Usage
+### Individual Agent Imports
 
 ```javascript
-import { AnalystAgent } from '@osmanekrem/bmad/agents/analyst'
-import { ArchitectAgent } from '@osmanekrem/bmad/agents/architect'
+// Core functionality
+import { CoreAgent, AIProvider } from "@osmanekrem/bmad/core"
+
+// Specialized agents
+import { AnalystAgent } from "@osmanekrem/bmad/analyst"
+import { ArchitectAgent } from "@osmanekrem/bmad/architect"
+import { DevAgent } from "@osmanekrem/bmad/dev"
+import { PMAgent } from "@osmanekrem/bmad/pm"
+import { QAAgent } from "@osmanekrem/bmad/qa"
+import { SMAgent } from "@osmanekrem/bmad/sm"
+import { UXAgent } from "@osmanekrem/bmad/ux"
+import { MasterAgent } from "@osmanekrem/bmad/master"
+import { OrchestratorAgent } from "@osmanekrem/bmad/orchestrator"
+
+// Template system
+import { TemplateManager } from "@osmanekrem/bmad/templates"
+
+// CLI tools
+import { CLI } from "@osmanekrem/bmad/cli"
+```
+
+### Full Import (if needed)
+
+```javascript
+import * as BMad from "@osmanekrem/bmad"
+```
+
+## Available Agents
+
+### Core Agent
+- **Purpose**: Base AI provider abstraction and core functionality
+- **Import**: `@osmanekrem/bmad/core`
+- **Features**: Multi-provider support (OpenAI, Claude, Gemini)
+
+### Analyst Agent
+- **Purpose**: AI-driven analysis and research
+- **Import**: `@osmanekrem/bmad/analyst`
+- **Features**: Data analysis, research assistance, insights generation
+
+### Architect Agent
+- **Purpose**: System architecture and design
+- **Import**: `@osmanekrem/bmad/architect`
+- **Features**: System design, architecture patterns, technical planning
+
+### Dev Agent
+- **Purpose**: Development and coding assistance
+- **Import**: `@osmanekrem/bmad/dev`
+- **Features**: Code generation, debugging, development workflows
+
+### PM Agent
+- **Purpose**: Project management and planning
+- **Import**: `@osmanekrem/bmad/pm`
+- **Features**: Project planning, task management, resource allocation
+
+### QA Agent
+- **Purpose**: Quality assurance and testing
+- **Import**: `@osmanekrem/bmad/qa`
+- **Features**: Test planning, quality checks, testing strategies
+
+### SM Agent (Scrum Master)
+- **Purpose**: Agile coaching and Scrum management
+- **Import**: `@osmanekrem/bmad/sm`
+- **Features**: Sprint planning, agile ceremonies, team coaching
+
+### UX Agent
+- **Purpose**: User experience design and research
+- **Import**: `@osmanekrem/bmad/ux`
+- **Features**: UX research, design patterns, usability analysis
+
+### Master Agent
+- **Purpose**: Project orchestration and strategic planning
+- **Import**: `@osmanekrem/bmad/master`
+- **Features**: High-level project coordination, strategic decisions
+
+### Orchestrator Agent
+- **Purpose**: Workflow management and coordination
+- **Import**: `@osmanekrem/bmad/orchestrator`
+- **Features**: Process orchestration, workflow automation
+
+## Template System
+
+The template system provides a flexible way to manage and use predefined templates:
+
+```javascript
+import { TemplateManager } from "@osmanekrem/bmad/templates"
+
+const templateManager = new TemplateManager()
+const template = await templateManager.getTemplate('analyst/research-template')
+```
+
+## CLI Tools
+
+Command-line interface for managing agents and workflows:
+
+```javascript
+import { CLI } from "@osmanekrem/bmad/cli"
+
+// CLI is automatically available as 'bmad' command when installed
+```
+
+## Configuration
+
+Set up your AI providers:
+
+```javascript
+import { AIProvider } from "@osmanekrem/bmad/core"
+
+// Configure OpenAI
+AIProvider.configure('openai', {
+  apiKey: process.env.OPENAI_API_KEY
+})
+
+// Configure Claude
+AIProvider.configure('claude', {
+  apiKey: process.env.ANTHROPIC_API_KEY
+})
+
+// Configure Gemini
+AIProvider.configure('gemini', {
+  apiKey: process.env.GOOGLE_API_KEY
+})
+```
+
+## Usage Example
+
+```javascript
+import { AnalystAgent, ArchitectAgent } from "@osmanekrem/bmad"
 
 // Initialize agents
 const analyst = new AnalystAgent()
 const architect = new ArchitectAgent()
 
-// Execute commands
-const marketResearch = await analyst.executeCommand('market-research', {
-  userInput: 'Analyze the mobile app market',
-  projectType: 'mobile',
-  targetAudience: 'consumers'
-})
-
-const systemDesign = await architect.executeCommand('system-design', {
-  userInput: 'Design a scalable web application',
-  projectType: 'web',
-  complexity: 'high'
-})
+// Use agents
+const analysis = await analyst.analyzeData(data)
+const architecture = await architect.designSystem(requirements)
 ```
 
-### Template Usage
+## Tree-Shaking Benefits
 
-```javascript
-import { TemplateManager } from '@osmanekrem/bmad/templates'
+- **Smaller bundle sizes**: Only import what you use
+- **Better performance**: Reduced JavaScript payload
+- **Cleaner code**: Explicit imports make dependencies clear
+- **Modern tooling**: Works with Webpack, Rollup, Vite, and other bundlers
 
-const templateManager = new TemplateManager()
+## Development
 
-// Load a template
-const template = await templateManager.loadTemplate('story-tmpl')
+This package uses a monorepo structure with individual packages that are built into a unified distribution. The tree-shaking is achieved through:
 
-// Render with context
-const rendered = await templateManager.renderTemplate('story-tmpl', {
-  storyTitle: 'User Authentication',
-  description: 'Implement user login functionality',
-  acceptanceCriteria: ['User can login with email', 'User can reset password']
-})
-```
+1. **ESM modules**: All code is published as ES modules
+2. **Proper exports**: Each submodule has its own export path
+3. **Side-effect free**: Code is written to be tree-shakeable
+4. **TypeScript support**: Full type definitions included
 
-### CLI Usage
+## License
 
-```bash
-# Show help
-bmad --help
+MIT
 
-# Initialize project
-bmad init
+## Author
 
-# Install agents
-bmad install analyst architect dev
+Osman Ekrem Korkmaz
 
-# Run agent commands
-bmad analyst market-research "Analyze e-commerce market"
-bmad architect system-design "Design microservices architecture"
-```
+## Repository
 
-## 🧪 Testing
-
-### Run All Tests
-
-```bash
-npm test
-```
-
-### Run Specific Test Suites
-
-```bash
-# Integration tests
-npm run test:integration
-
-# End-to-end tests
-npm run test:e2e
-
-# Performance tests
-npm run test:performance
-
-# Coverage report
-npm run test:coverage
-```
-
-### Test Results
-
-- **Integration Tests**: 26/26 passed ✅
-- **E2E Tests**: 6/6 passed ✅
-- **Performance Tests**: 9/9 passed ✅
-- **Total Coverage**: 85%+ ✅
-
-## 📊 Performance
-
-### Agent Performance Metrics
-
-- **Initialization Time**: < 10ms per agent
-- **Command Retrieval**: < 5ms
-- **Configuration Access**: < 5ms
-- **Memory Usage**: < 50MB for 30+ instances
-- **Concurrent Operations**: 250+ operations in < 1s
-
-### Scalability
-
-- Supports 100+ concurrent agent instances
-- Handles 1000+ commands per minute
-- Memory efficient with lazy loading
-- Optimized for cloud deployment
-
-## 🔄 Workflows
-
-### Complete Development Workflow
-
-1. **Strategic Planning** (Master Agent)
-2. **Market Research** (Analyst Agent)
-3. **System Design** (Architect Agent)
-4. **Project Planning** (PM Agent)
-5. **User Research** (UX Agent)
-6. **Code Generation** (Dev Agent)
-7. **Test Planning** (QA Agent)
-8. **Sprint Management** (SM Agent)
-9. **Workflow Coordination** (Orchestrator Agent)
-
-### Agent Communication
-
-```javascript
-// Data flow between agents
-const marketData = await analyst.executeCommand('market-research', context)
-const architectureData = await architect.executeCommand('system-design', {
-  ...context,
-  marketInsights: marketData.insights
-})
-const developmentData = await dev.executeCommand('generate-code', {
-  ...context,
-  architecture: architectureData.design
-})
-```
-
-## 🛡️ Error Handling
-
-### Graceful Error Recovery
-
-```javascript
-try {
-  const result = await agent.executeCommand('command', context)
-} catch (error) {
-  if (error.message.includes('API key')) {
-    // Handle authentication errors
-  } else if (error.message.includes('rate limit')) {
-    // Handle rate limiting
-  } else {
-    // Handle other errors
-  }
-}
-```
-
-### Common Error Types
-
-- **Authentication Errors**: Invalid API key
-- **Rate Limiting**: Too many requests
-- **Validation Errors**: Invalid input parameters
-- **Network Errors**: Connection issues
-- **Template Errors**: Missing or invalid templates
-
-## 🔧 Development
-
-### Project Structure
-
-```
-bmad-npm-packages/
-├── packages/
-│   ├── core/           # Core infrastructure
-│   ├── templates/      # Template system
-│   ├── cli/           # Command-line interface
-│   ├── analyst/       # Analyst agent
-│   ├── architect/     # Architect agent
-│   ├── dev/           # Developer agent
-│   ├── pm/            # Project manager agent
-│   ├── qa/            # QA agent
-│   ├── sm/            # Scrum master agent
-│   ├── ux/            # UX agent
-│   ├── master/        # Master agent
-│   └── orchestrator/  # Orchestrator agent
-├── tests/
-│   ├── integration/   # Integration tests
-│   ├── e2e/          # End-to-end tests
-│   └── performance/  # Performance tests
-└── docs/             # Documentation
-```
-
-### Building
-
-```bash
-# Build all packages
-npm run build:all
-
-# Build specific package
-cd packages/analyst
-npm run build
-
-# Clean build artifacts
-npm run clean
-```
-
-### Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests
-5. Run the test suite
-6. Submit a pull request
-
-## 📈 Roadmap
-
-### Phase 1: Core Infrastructure ✅
-- [x] Base agent classes
-- [x] Template system
-- [x] CLI interface
-- [x] Configuration management
-
-### Phase 2: Specialized Agents ✅
-- [x] 9 specialized agents
-- [x] Command systems
-- [x] Template integration
-- [x] Error handling
-
-### Phase 3: Integration and Testing ✅
-- [x] Comprehensive test suite
-- [x] Performance optimization
-- [x] Documentation
-- [x] Examples
-
-### Phase 4: Advanced Features (Planned)
-- [ ] Web dashboard
-- [ ] Real-time collaboration
-- [ ] Advanced analytics
-- [ ] Plugin system
-- [ ] Cloud deployment
-
-## 🤝 Support
-
-### Getting Help
-
-- **Documentation**: [GitHub Wiki](https://github.com/osmanekrem/bmad-core/wiki)
-- **Issues**: [GitHub Issues](https://github.com/osmanekrem/bmad-core/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/osmanekrem/bmad-core/discussions)
-
-### Community
-
-- **Discord**: [BMad Community](https://discord.gg/bmad)
-- **Twitter**: [@BMadAI](https://twitter.com/BMadAI)
-- **LinkedIn**: [BMad AI](https://linkedin.com/company/bmad-ai)
-
-## 📄 License
-
-MIT License - see [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- OpenAI for GPT models
-- Anthropic for Claude models
-- Google for Gemini models
-- The open-source community for inspiration and contributions
-
----
-
-**Made with ❤️ by Osman Ekrem Korkmaz**
-
-*Empowering developers with AI-driven automation*
+https://github.com/osmanekrem/bmad-core

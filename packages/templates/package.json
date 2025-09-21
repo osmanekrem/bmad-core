@@ -1,5 +1,5 @@
 {
-  "name": "@osmanekrem/bmad/templates",
+  "name": "bmad-templates",
   "version": "1.0.0",
   "description": "BMad Templates - Template system for BMad agents",
   "type": "module",

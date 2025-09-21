@@ -1,5 +1,5 @@
 {
-  "name": "@osmanekrem/bmad/core",
+  "name": "bmad-core",
   "version": "1.0.0",
   "description": "BMad Core - AI provider abstraction and base agent functionality",
   "type": "module",
