@@ -92,12 +92,12 @@ export abstract class BaseAgentImpl implements BaseAgent {
     this.aiProvider = this.createAIProvider()
   }
 
-  protected async callAI(prompt: string, options?: any): Promise<string> {
+   protected async callAI(prompt: string, options?: any): Promise<string> {
     const fullPrompt = this.buildFullPrompt(prompt)
     return await this.aiProvider.callAI(fullPrompt, options)
   }
 
-  protected buildFullPrompt(userPrompt: string): string {
+   buildFullPrompt(userPrompt: string): string {
     let fullPrompt = ''
     
     if (this.systemPrompt) {
@@ -113,7 +113,7 @@ export abstract class BaseAgentImpl implements BaseAgent {
     return fullPrompt
   }
 
-  protected createResponse(content: string, metadata?: any): AgentResponse {
+   createResponse(content: string, metadata?: any): AgentResponse {
     return {
       content,
       metadata: {
